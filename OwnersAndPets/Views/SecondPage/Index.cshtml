@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="appPet">
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/appPet.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Second Page</title>
+</head>
+<body data-ng-controller="AppPetController">
+    <h2>{{}} Pet's</h2>
+    <a>Back to all users</a>
+    <h2>@ViewBag.Head</h2>
+    <form name="addPet">
+
+        <input type="text" style="width:200px;" class="form-control" id="name" placeholder="Enter Pet's name" data-ng-model="Pet.Name" required />
+
+        <input type="submit" value="Add" data-ng-click="addPet()" class="btn btn-primary" />
+    </form>
+    <p>Total count:</p>
+    <table ng-table="tableParams" class="table table-bordered table-hover" style="width:800px">
+        <tr>
+            <th>#</th>
+            <td>Name</td>
+        </tr>
+        <tr ng-repeat="pet in pets">
+            <td>{{ pet.Id }}</td>
+            <td>{{ pet.Name }}<button ng-click="delete($index)">Delete</button></td>
+        </tr>
+    </table>
+</body>
+</html>

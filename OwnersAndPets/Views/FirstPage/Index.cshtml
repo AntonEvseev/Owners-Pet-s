@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="app">
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>First Page</title>
+</head>
+<body data-ng-controller="AppController">
+    <h2>All Users</h2>
+    
+    
+    <form name="addOwner">
+        
+             <input type="text" style="width:200px;" class="form-control" id="name" placeholder="Enter pet owners name" data-ng-model="Owner.Name" required />
+        
+            <input type="submit" value="Add" data-ng-click="add()" class="btn btn-primary" />
+    </form>
+
+    <table ng-table="tableParams" class="table table-bordered table-hover" style="width:800px">
+        <tr>
+            <th>#</th>
+            <td>Name</td>
+            <th>Pets Count</th>
+        </tr>
+        <tr ng-repeat="owner in owners">
+            <td><a href="/SecondPage/Index/{{owner.Id}}">{{ owner.Id }}</a></td>
+            <td>{{ owner.Name }}</td>
+            <td>{{ owner.PetCount }}<button ng-click="delete($index)">Delete</button></td>
+        </tr>
+    </table>
+    
+    <hr />
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
