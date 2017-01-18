@@ -8,7 +8,6 @@ namespace OwnersAndPets.Controllers
 {
     public class SecondPageController : Controller
     {
-        
         public ActionResult Index(int id)
         {
             ViewBag.Head = id;

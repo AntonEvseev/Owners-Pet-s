@@ -19,8 +19,6 @@ namespace OwnersAndPets.Controllers
        
         public IEnumerable<OwnersViewModel> GetOwners()
         {
-
-           
                 return db.Owners.Include(x => x.Pets)
                          .AsEnumerable()
                          .Select(x => new OwnersViewModel
@@ -29,16 +27,7 @@ namespace OwnersAndPets.Controllers
                              Name = x.Name,
                              PetCount = x.Pets.Count()
                          });
-            
-
         }
-
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-      
 
         /// POST api/<controller>
         public HttpResponseMessage PostOwner(Owner Owner)
@@ -47,7 +36,6 @@ namespace OwnersAndPets.Controllers
             {
                 db.Owners.Add(Owner);
                 db.SaveChanges();
-  
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, Owner);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = Owner.Id }));
                 return response;
@@ -58,25 +46,17 @@ namespace OwnersAndPets.Controllers
             }
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
         // DELETE api/values/5
         [ResponseType(typeof(Owner))]
         public IHttpActionResult DeleteOwner(int id)
         {
-           
             Owner owner = db.Owners.Find(id);
             if (owner == null)
             {
                 return NotFound();
             }
-
             db.Owners.Remove(owner);
             db.SaveChanges();
-
             return Ok(owner);
         }
     }

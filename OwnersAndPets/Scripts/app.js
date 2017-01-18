@@ -1,14 +1,14 @@
 ﻿var app = angular.module('app', []);
 app.controller('AppController', function ($scope, $http, OwnersService) {
     
-   
+    $scope.onId = false;
     $scope.owners = null;
     
 
     OwnersService.GetAllRecords().then(function (d) {
-        $scope.owners = d.data; // Success
+        $scope.owners = d.data; 
     }, function () {
-        alert('Error Occured !!!'); // Failed
+        alert('Error Occured !!!'); 
     });
 
 
@@ -22,9 +22,9 @@ app.controller('AppController', function ($scope, $http, OwnersService) {
                             data: $scope.Owner
                         }).then(function successCallback(response) {
                             OwnersService.GetAllRecords().then(function (d) {
-                                $scope.owners = d.data; // Success
+                                $scope.owners = d.data; 
                             }, function () {
-                                alert('Error Occured !!!'); // Failed
+                                alert('Error Occured !!!'); 
                             });
                            alert("Owner Added Successfully !!!");
                         }, function errorCallback(response) {
@@ -46,9 +46,9 @@ app.controller('AppController', function ($scope, $http, OwnersService) {
                 url: 'api/Owner/' + $scope.owners[index].Id,
             }).then(function successCallback(response) {
                 OwnersService.GetAllRecords().then(function (d) {
-                    $scope.owners = d.data; // Success
+                    $scope.owners = d.data; 
                 }, function () {
-                    alert('Error Occured !!!'); // Failed
+                    alert('Error Occured !!!'); 
                 });
                 alert("Owner Deleted Successfully !!!");
             }, function errorCallback(response) {
